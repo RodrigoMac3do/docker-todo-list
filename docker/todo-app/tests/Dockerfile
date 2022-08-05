@@ -7,7 +7,7 @@ EXPOSE 3001
 
 ADD ./node_modules.tar.gz .
 
-COPY  . ./todo-app/tests
+COPY . ./todo-app/tests
 
 ENTRYPOINT ["npm"]
 

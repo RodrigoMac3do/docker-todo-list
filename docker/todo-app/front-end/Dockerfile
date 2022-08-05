@@ -6,7 +6,7 @@ EXPOSE 3001
 
 ADD ./node_modules.tar.gz .
 
-COPY  . ./todo-app/front-end
+COPY . ./todo-app/front-end
 
 ENTRYPOINT ["npm"]
 

@@ -1,0 +1,1 @@
+docker build -t todotests ./docker/docker-compose.yml

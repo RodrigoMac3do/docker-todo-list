@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  
+  todotests:
+    image: todotests
+    # build: ./todo-app/tests
+    environment:
+      - FRONT_HOST=frontend
+    depends_on:
+      - frontend
+      - backend
+
+  todofront:
+    image: todofrontend
+    # build: ./todo-app/front-end
+    environment:
+      - REACT_APP_API_HOST=backend
+    ports:
+      - 3000:3000
+
+  todoback:
+    image: todobackend
+    # build: ./todo-app/back-end
+    ports:
+      - 3001:3001
+
+networks:
+  # Rede padrão, criada automaticamente
+  default:
+    # Dá um nome específico à rede padrão
+    name: one_for_all_net

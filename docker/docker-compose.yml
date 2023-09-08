@@ -1,32 +1,28 @@
-version: '3.1'
+version: '3'
 
 services:
-  
-  todotests:
-    image: todotests
-    # build: ./todo-app/tests
-    environment:
-      - FRONT_HOST=frontend
-    depends_on:
-      - frontend
-      - backend
 
   todofront:
     image: todofrontend
-    # build: ./todo-app/front-end
     environment:
-      - REACT_APP_API_HOST=backend
+      - REACT_APP_API_HOST=todoback
+    depends_on:
+      - todoback
     ports:
       - 3000:3000
+    restart: always
 
   todoback:
     image: todobackend
-    # build: ./todo-app/back-end
     ports:
       - 3001:3001
+    restart: always
 
-networks:
-  # Rede padrão, criada automaticamente
-  default:
-    # Dá um nome específico à rede padrão
-    name: one_for_all_net
+  todotests:
+    image: todotests
+    environment:
+      - FRONT_HOST=todofront
+    depends_on:
+      - todofront
+      - todoback
+    restart: on-failure
